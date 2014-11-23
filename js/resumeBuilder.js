@@ -75,13 +75,13 @@ var projects = {
 	{
 		"title" : "Project 1",
 		"dates" : " 2014",
-		"description" : "Lorem ipsum",
+		"description" : "My first project, using Bootstrap to build a website from a mockup.",
 		"images" : "images/197x148.gif"	
 	},
 	{
 		"title" : "Project 2",
 		"date" : "2014",
-		"description" : "Ipsum lorem",
+		"description" : "My second project, using Javascript to build a resume.",
 		"images" : "images/197x148.gif"	
 	}
 	]	
@@ -141,9 +141,24 @@ function displayWork(){
 			$(".project-entry:last").append(formattedProjImg);		
 		}
 	};
+	
+	function displayEducation() {
+		for (school in education.schools) {
+			$("#education").append(HTMLschoolStart);
+			var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+			$(".education-entry:last").append(formattedSchoolName);
+			var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+			$(".education-entry:last").append(formattedSchoolDegree);
+			var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+			$(".education-entry:last").append(formattedSchoolLocation);
+			var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
+			$(".education-entry:last").append(formattedSchoolMajor);
+		}
+	}
 		
 displayWork();
 displayProjects();
+displayEducation();
 
 
 function inName(name) {
