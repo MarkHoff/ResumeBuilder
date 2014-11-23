@@ -57,16 +57,32 @@ var education = {
 	"schools" : [
 		{
 			"name": "Missouri State University",
+			"url": "http://www.missouristate.edu",
 			"location": "Springfield, MO",
 			"degree": "BS",
 			"major" : "Electrical Engineering"
 		},
 		{
 			"name": "University of Illinois at Springfield",
+			"url": "http://www.uis.edu",
 			"location": "Springfield, IL",
 			"degree": "MS",
 			"major" : "Management Information Systems"
 		}	
+	],
+	"onlines" : [
+	{
+		"title" : "Front-End Web Development Nanodegree",
+		"school" : "Udacity",
+		"dates" : "October 2014 - May 2015",
+		"url" : "http://www.udacity.com"	
+	},
+	{
+		"title" : "Responsive Web Design",
+		"school" : "AT&T CELL",
+		"dates" : "August 2014 - October 2014",
+		"url" : "http://www.att.com"
+	}
 	]
 };
 
@@ -80,7 +96,7 @@ var projects = {
 	},
 	{
 		"title" : "Project 2",
-		"date" : "2014",
+		"dates" : "2014",
 		"description" : "My second project, using Javascript to build a resume.",
 		"images" : "images/197x148.gif"	
 	}
@@ -151,8 +167,25 @@ function displayWork(){
 			$(".education-entry:last").append(formattedSchoolDegree);
 			var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
 			$(".education-entry:last").append(formattedSchoolLocation);
+			//var formattedSchoolURL = HTMLSchoolName.replace("#", education.schools[school].url);
+			//$(".education-entry:last").append(formattedSchoolURL);
 			var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
 			$(".education-entry:last").append(formattedSchoolMajor);
+		}
+		
+		$("#education").append(HTMLonlineClasses);
+		for (online in education.onlines) {
+			$("#education").append(HTMLonlineStart);
+			var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlines[online].title);
+			//$(".online-entry:last").append(formattedOnlineTitle);
+			var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlines[online].school);
+			//$(".online-entry:last").append(formattedOnlineSchool);
+			var formattedOnlineTitleSchool = formattedOnlineTitle + formattedOnlineSchool;
+			$(".online-entry:last").append(formattedOnlineTitleSchool);
+			var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlines[online].dates);
+			$(".online-entry:last").append(formattedOnlineDates);
+			var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlines[online].url);
+			$(".online-entry:last").append(formattedOnlineURL);
 		}
 	}
 		
