@@ -1,6 +1,6 @@
 
 
-
+// Biographical information
 var bio = {
 	"name" : "Mark Hoffman",
 	"role" : "Web Developer",
@@ -21,17 +21,16 @@ var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 var formattedMobile = HTMLmobile.replace ("%data%", bio.contactInfo.mobile);
 var formattedEmail = HTMLemail.replace("%data%", bio.contactInfo.email);
 var formattedLocation = HTMLlocation.replace("%data%", bio.contactInfo.location);
-//var formattedContactGeneric = HTMLcontactGeneric.replace("%data%",formattedMobile + " " + formattedEmail);
 $("#topContacts").append(formattedEmail);
 $("#topContacts").append(formattedMobile);
 $("#topContacts").append(formattedLocation);
-//$("#header").append(formattedContactGeneric);
 
 var formattedBioPic = HTMLbioPic.replace("%data%", "images/fry.jpg");
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 $("#header").append(formattedBioPic);
 
+// Work history information.
 var work = {
 	"jobs" : [
 	{
@@ -52,7 +51,7 @@ var work = {
 };
 
 
-
+// Education information
 var education = {
 	"schools" : [
 		{
@@ -86,6 +85,7 @@ var education = {
 	]
 };
 
+//Project I've worked on
 var projects = {
 	"proj" : [
 	{
@@ -104,14 +104,8 @@ var projects = {
 
 };
 
-/*function displayContacts() {
-	$("#header").append(HTMLcontactGeneric);
-	var formattedEmail = HTMLemail.replace("%data%", bio.contactInfo.email);
-		$(".work-entry:last").append(formattedEmail);
-	
-};
-*/
 
+//If statement to display skills.
 if (bio.skills.length > 0) {
 	$("#header").append(HTMLskillsStart);
 	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
@@ -124,6 +118,7 @@ if (bio.skills.length > 0) {
 	$("#skills").append(formattedSkill);	
 };
 
+//Function to display my work information
 function displayWork(){
 	
 	for (job in work.jobs) {
@@ -143,7 +138,7 @@ function displayWork(){
 	
 };
 
-
+//Function to display the projects I've worked on.
 	function displayProjects() {
 		for (pro in projects.proj) {
 			$("#projects").append(HTMLprojectStart);
@@ -157,12 +152,15 @@ function displayWork(){
 			$(".project-entry:last").append(formattedProjImg);		
 		}
 	};
-	
+
+//Function to display my education history	
 	function displayEducation() {
 		for (school in education.schools) {
 			$("#education").append(HTMLschoolStart);
+			var formattedSchoolUrl = HTMLschoolURL.replace("#", education.schools[school].url);
 			var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
-			$(".education-entry:last").append(formattedSchoolName);
+			var formattedUrlName = formattedSchoolUrl + formattedSchoolName;
+			$(".education-entry:last").append(formattedUrlName);
 			var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
 			$(".education-entry:last").append(formattedSchoolDegree);
 			var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
@@ -188,12 +186,13 @@ function displayWork(){
 			$(".online-entry:last").append(formattedOnlineURL);
 		}
 	}
-		
+
+//These three statements call the various functions defined above.		
 displayWork();
 displayProjects();
 displayEducation();
 
-
+//This function is used to internationalize my name (i.e. all caps)
 function inName(name) {
 	var name = name.trim().split(" ");
 	//console.log(name);
@@ -206,17 +205,5 @@ function inName(name) {
 	return name[0] + " " + name[1];
 }
 
-
-
-/*$("#main").append("</br>" + bio.name + "</br>") ;
-$("#main").append(bio.role + "</br>");
-$("#main").append(bio.contactInfo.email + "</br>");
-$("#main").append(bio.contactInfo.mobile + "</br>");
-$("#main").append(bio.contactInfo.location + "</br>");
-$("#main").append(bio.skills + "</br>");
-$("#main").append(bio.picture_url + "</br>");
-$("#main").append(bio.welcome_msg + "</br>");
-$("#main").append(work["position"] + "</br>");
-//$("#main").append(education.schools.name + "</br>");*/
 $("#main").append(internationalizeButton);
 $("#mapDiv").append(googleMap);
