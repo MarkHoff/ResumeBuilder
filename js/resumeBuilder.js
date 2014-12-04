@@ -9,7 +9,7 @@ var bio = {
 		"mobile" : "404-889-1335",
 		"location" : "Woodstock, GA"
 	},
-	"picture_url" : "images/fry.jpg",
+	"picture_url" : "images/ProfilePic2011_175pxw.jpg",
 	"welcome_msg" : "Hello there!",
 	"skills" : [
 		"awesomeness", " programming", " teaching", " JS"
@@ -25,7 +25,7 @@ $("#topContacts").append(formattedEmail);
 $("#topContacts").append(formattedMobile);
 $("#topContacts").append(formattedLocation);
 
-var formattedBioPic = HTMLbioPic.replace("%data%", "images/fry.jpg");
+var formattedBioPic = HTMLbioPic.replace("%data%", "images/ProfilePic2011_175pxw.jpg");
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 $("#header").append(formattedBioPic);
@@ -35,6 +35,7 @@ var work = {
 	"jobs" : [
 	{
 		"company" : "General Electric",
+		"url" : "http://www.ge.com",
 		"position" : "Field Engineer",
 		"location" : "Springfield, IL",
 		"dates" : "1989 - 1996",
@@ -42,6 +43,7 @@ var work = {
 	},
 	{
 		"company" : "AT&T",
+		"url" : "http://www.att.com",
 		"position" : "Technical Architect",
 		"location" : "Alpharetta, GA",
 		"dates" : "1996 - Present",
@@ -70,18 +72,18 @@ var education = {
 		}	
 	],
 	"onlines" : [
-	{
-		"title" : "Front-End Web Development Nanodegree",
-		"school" : "Udacity",
-		"dates" : "October 2014 - May 2015",
-		"url" : "http://www.udacity.com"	
-	},
-	{
-		"title" : "Responsive Web Design",
-		"school" : "AT&T CELL",
-		"dates" : "August 2014 - October 2014",
-		"url" : "http://www.att.com"
-	}
+		{
+			"name" : "Front-End Web Development Nanodegree",
+			"url" : "http://www.udacity.com",	
+			"school" : "Udacity",
+			"dates" : "October 2014 - May 2015"
+		},
+		{
+			"name" : "Responsive Web Design",
+			"url" : "http://www.att.com",
+			"school" : "AT&T CELL",
+			"dates" : "August 2014 - October 2014"
+		}
 	]
 };
 
@@ -89,16 +91,18 @@ var education = {
 var projects = {
 	"proj" : [
 	{
-		"title" : "Project 1",
+		"title" : "Project 1 - Mockup to Web Design",
 		"dates" : " 2014",
 		"description" : "My first project, using Bootstrap to build a website from a mockup.",
-		"images" : "images/197x148.gif"	
+		"images" : "images/Project1.jpg",
+		"url" : "http://www.google.com"
 	},
 	{
-		"title" : "Project 2",
+		"title" : "Project 2 - Dynamic Web Design",
 		"dates" : "2014",
 		"description" : "My second project, using Javascript to build a resume.",
-		"images" : "images/197x148.gif"	
+		"images" : "images/197x148.gif",
+		"url" : "https://github.com/MarkHoff/ResumeBuilder"	
 	}
 	]	
 
@@ -123,9 +127,10 @@ function displayWork(){
 	
 	for (job in work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
+		var formattedWorkURL = HTMLworkURL.replace("#", work.jobs[job].url);
 		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].company);
 		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].position);
-		var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		var formattedEmployerTitle = formattedWorkURL + formattedEmployer + formattedTitle;
 		$(".work-entry:last").append(formattedEmployerTitle);
 		
 		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
@@ -142,8 +147,10 @@ function displayWork(){
 	function displayProjects() {
 		for (pro in projects.proj) {
 			$("#projects").append(HTMLprojectStart);
+			var formattedProjectUrl = HTMLprojectURL.replace("#", projects.proj[pro].url);
 			var formattedProjTitle = HTMLprojectTitle.replace("%data%", projects.proj[pro].title);
-			$(".project-entry:last").append(formattedProjTitle);
+			var formattedProjUrlTitle = formattedProjectUrl + formattedProjTitle;
+			$(".project-entry:last").append(formattedProjUrlTitle);
 			var formattedProjDates = HTMLprojectDates.replace("%data%", projects.proj[pro].dates);
 			$(".project-entry:last").append(formattedProjDates);
 			var formattedProjDescrip = HTMLprojectDescription.replace("%data%", projects.proj[pro].description);
@@ -159,10 +166,12 @@ function displayWork(){
 			$("#education").append(HTMLschoolStart);
 			var formattedSchoolUrl = HTMLschoolURL.replace("#", education.schools[school].url);
 			var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
-			var formattedUrlName = formattedSchoolUrl + formattedSchoolName;
-			$(".education-entry:last").append(formattedUrlName);
+			//var formattedUrlName = formattedSchoolUrl + formattedSchoolName;
+			//$(".education-entry:last").append(formattedUrlName);
 			var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
-			$(".education-entry:last").append(formattedSchoolDegree);
+			//$(".education-entry:last").append(formattedSchoolDegree);
+			var formattedUrlName = formattedSchoolUrl + formattedSchoolName + formattedSchoolDegree;
+			$(".education-entry:last").append(formattedUrlName);
 			var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
 			$(".education-entry:last").append(formattedSchoolLocation);
 			//var formattedSchoolURL = HTMLSchoolName.replace("#", education.schools[school].url);
@@ -171,19 +180,22 @@ function displayWork(){
 			$(".education-entry:last").append(formattedSchoolMajor);
 		}
 		
+//Online classes
 		$("#education").append(HTMLonlineClasses);
 		for (online in education.onlines) {
 			$("#education").append(HTMLonlineStart);
-			var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlines[online].title);
-			//$(".online-entry:last").append(formattedOnlineTitle);
+			var formattedOnlineUrl = HTMLonlineURL.replace("#", education.onlines[online].url);
+			var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlines[online].name);
+			var formattedOnlineUrlTitle = formattedOnlineUrl + formattedOnlineTitle;
+			//$(".online-entry:last").append(formattedOnlineUrlTitle);
 			var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlines[online].school);
-			//$(".online-entry:last").append(formattedOnlineSchool);
-			var formattedOnlineTitleSchool = formattedOnlineTitle + formattedOnlineSchool;
+			var formattedOnlineTitleSchool = formattedOnlineUrl + formattedOnlineTitle + formattedOnlineSchool;
 			$(".online-entry:last").append(formattedOnlineTitleSchool);
 			var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlines[online].dates);
-			$(".online-entry:last").append(formattedOnlineDates);
-			var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlines[online].url);
-			$(".online-entry:last").append(formattedOnlineURL);
+			//$(".online-entry:last").append(formattedOnlineDates);
+			//var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlines[online].url);
+			//$(".online-entry:last").append(formattedOnlineURL);
+			
 		}
 	}
 

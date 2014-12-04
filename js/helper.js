@@ -30,14 +30,16 @@ var HTMLskillsStart = "<h3 id='skillsH3'>Skills at a Glance:</h3><ul id='skills'
 var HTMLskills = "<li class='flex-item'><span class='white-text'>%data%</span></li>";
 
 var HTMLworkStart = "<div class='work-entry'></div>";
-var HTMLworkEmployer = "<a href='#'>%data%";
+var HTMLworkURL = "<a href='#'";
+var HTMLworkEmployer = ">%data%";
 var HTMLworkTitle = " - %data%</a>";
 var HTMLworkDates = "<div class='date-text'>%data%</div>";
 var HTMLworkLocation = "<div class='location-text'>%data%</div>";
 var HTMLworkDescription = "<p><br>%data%</p>";
 
 var HTMLprojectStart = "<div class='project-entry'></div>";
-var HTMLprojectTitle = "<a href='#'>%data%</a>";
+var HTMLprojectURL = "<a href='#'";
+var HTMLprojectTitle = ">%data%</a>";
 var HTMLprojectDates = "<div class='date-text'>%data%</div>";
 var HTMLprojectDescription = "<p><br>%data%</p>";
 var HTMLprojectImage = "<img src='%data%'>";
@@ -52,10 +54,11 @@ var HTMLschoolMajor = "<em><br>Major: %data%</em>";
 
 var HTMLonlineStart = "<div class='online-entry'></div>";
 var HTMLonlineClasses = "<h3>Online Classes</h3>";
-var HTMLonlineTitle = "<a href='#'>%data%";
-var HTMLonlineSchool = "    -   %data%</a>";
+var HTMLonlineURL = "<a href='#'";
+var HTMLonlineTitle = ">%data%";
+var HTMLonlineSchool = " -- %data%</a>";
 var HTMLonlineDates = "<div class='date-text'>%data%</div>";
-var HTMLonlineURL = "<br><a href='#'>%data%</a>";
+//var HTMLonlineURL = "<br><a href='#'>%data%</a>";
 
 var internationalizeButton = "<button>Internationalize</button>";
 var googleMap = "<div id='map'></div>";
@@ -171,13 +174,15 @@ function initializeMap() {
     // infoWindows are the little helper windows that open when you click
     // or hover over a pin on a map. They usually contain more information
     // about a location.
-    var infoWindow = new google.maps.InfoWindow({
+      
+    var infowindow = new google.maps.InfoWindow({
       content: name
     });
 
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
       // your code goes here!
+    	infowindow.open(map,marker);
     });
 
     // this is where the pin actually gets added to the map.
@@ -208,6 +213,7 @@ function initializeMap() {
     // creates a Google place search service object. PlacesService does the work of
     // actually searching for location data.
     var service = new google.maps.places.PlacesService(map);
+    var text = "This is a test.";
     
     // Iterates through the array of locations, creates a search object for each location
     for (place in locations) {
@@ -219,7 +225,15 @@ function initializeMap() {
 
       // Actually searches the Google Maps API for location data and runs the callback 
       // function with the search results after each search.
+      
       service.textSearch(request, callback);
+      
+      //Copied this from Piazza forum
+      //service.textSearch(request, function(results, status) {
+      //if (status == google.maps.places.PlacesServiceStatus.OK) {       
+        //createMapMarker(results[0], text);
+      //}
+    //});
     }
   }
 
@@ -247,4 +261,6 @@ window.addEventListener('load', initializeMap);
 window.addEventListener('resize', function(e) {
   // Make sure the map bounds get updated on page resize
   map.fitBounds(mapBounds);}
+  
+  
 );
