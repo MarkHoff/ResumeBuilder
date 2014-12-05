@@ -101,7 +101,7 @@ var projects = {
 		"title" : "Project 2 - Dynamic Web Design",
 		"dates" : "2014",
 		"description" : "My second project, using Javascript to build a resume.",
-		"images" : "images/197x148.gif",
+		"images" : "images/Project2.jpg",
 		"url" : "https://github.com/MarkHoff/ResumeBuilder"	
 	}
 	]	
