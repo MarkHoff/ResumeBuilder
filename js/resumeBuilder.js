@@ -10,9 +10,9 @@ var bio = {
 		"location" : "Woodstock, GA"
 	},
 	"picture_url" : "images/ProfilePic2011_175pxw.jpg",
-	"welcome_msg" : "Hello there!",
+	"welcome_msg" : "Thank you for looking at my resume!",
 	"skills" : [
-		"awesomeness", " programming", " teaching", " JS"
+		"HTML", "CSS", "JavaScript", "JQuery"
 		],
 };
 
@@ -30,6 +30,9 @@ $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 $("#header").append(formattedBioPic);
 
+var formattedWelcomeMsg = HTMLWelcomeMsg.replace("%data%", bio.welcome_msg);
+$("#header").append(formattedWelcomeMsg);
+
 // Work history information.
 var work = {
 	"jobs" : [
@@ -39,7 +42,9 @@ var work = {
 		"position" : "Field Engineer",
 		"location" : "Springfield, IL",
 		"dates" : "1989 - 1996",
-		"description" : "Installation and maintenance of radiological equipment."
+		"description" : "Working in various medical facilities, clinics, hospitals, etc., installing radiological equipment," +
+		" including X-Ray equipment, Computerized Tomography (CT) scanners, Magnetic Resonance Imaging (MRI) equipment" +
+		" and Nuclear Medicine equipment."
 	},
 	{
 		"company" : "AT&T",
@@ -47,7 +52,10 @@ var work = {
 		"position" : "Technical Architect",
 		"location" : "Alpharetta, GA",
 		"dates" : "1996 - Present",
-		"description" : "Designing database applications for configuration management of mobility network elements."
+		"description" : "Began working in the mobility Central Office maintaining the Mobility Switching Center (MSC) as well" +
+		" as ancillary equipment such as Digital Cross Connects, Voice Mail, Voice-activated dialing, etc.  Moved to " + 
+		" headquarters in Alpharetta, GA for Cingular Wireless managing call routing translations, and later moved into" +
+		" IT as a technical architect for Oracle database applications."
 	}
 	]
 };
@@ -83,6 +91,12 @@ var education = {
 			"url" : "http://www.att.com",
 			"school" : "AT&T CELL",
 			"dates" : "August 2014 - October 2014"
+		},
+		{
+			"name" : "Big Data",
+			"url" : "http://www.att.com",
+			"school" : "AT&T CELL",
+			"dates" : "May 2014 - July 2014"
 		}
 	]
 };
@@ -95,14 +109,14 @@ var projects = {
 		"dates" : " 2014",
 		"description" : "My first project, using Bootstrap to build a website from a mockup.",
 		"images" : "images/Project1.jpg",
-		"url" : "http://www.google.com"
+		"url" : "http://markhoff.github.io/Project1/"
 	},
 	{
 		"title" : "Project 2 - Dynamic Web Design",
 		"dates" : "2014",
 		"description" : "My second project, using Javascript to build a resume.",
 		"images" : "images/Project2.jpg",
-		"url" : "https://github.com/MarkHoff/ResumeBuilder"	
+		"url" : "http://markhoff.github.io/ResumeBuilder/"	
 	}
 	]	
 
@@ -156,7 +170,9 @@ function displayWork(){
 			var formattedProjDescrip = HTMLprojectDescription.replace("%data%", projects.proj[pro].description);
 			$(".project-entry:last").append(formattedProjDescrip);
 			var formattedProjImg = HTMLprojectImage.replace("%data%", projects.proj[pro].images);
-			$(".project-entry:last").append(formattedProjImg);		
+			var formattedProjImgUrl = formattedProjectUrl + formattedProjImg;
+			$(".project-entry:last").append(formattedProjImgUrl);
+			//$(".project-entry:last").append(formattedProjImg);		
 		}
 	};
 
@@ -166,16 +182,11 @@ function displayWork(){
 			$("#education").append(HTMLschoolStart);
 			var formattedSchoolUrl = HTMLschoolURL.replace("#", education.schools[school].url);
 			var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
-			//var formattedUrlName = formattedSchoolUrl + formattedSchoolName;
-			//$(".education-entry:last").append(formattedUrlName);
 			var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
-			//$(".education-entry:last").append(formattedSchoolDegree);
 			var formattedUrlName = formattedSchoolUrl + formattedSchoolName + formattedSchoolDegree;
 			$(".education-entry:last").append(formattedUrlName);
 			var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
 			$(".education-entry:last").append(formattedSchoolLocation);
-			//var formattedSchoolURL = HTMLSchoolName.replace("#", education.schools[school].url);
-			//$(".education-entry:last").append(formattedSchoolURL);
 			var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
 			$(".education-entry:last").append(formattedSchoolMajor);
 		}
@@ -187,14 +198,10 @@ function displayWork(){
 			var formattedOnlineUrl = HTMLonlineURL.replace("#", education.onlines[online].url);
 			var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlines[online].name);
 			var formattedOnlineUrlTitle = formattedOnlineUrl + formattedOnlineTitle;
-			//$(".online-entry:last").append(formattedOnlineUrlTitle);
 			var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlines[online].school);
 			var formattedOnlineTitleSchool = formattedOnlineUrl + formattedOnlineTitle + formattedOnlineSchool;
 			$(".online-entry:last").append(formattedOnlineTitleSchool);
 			var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlines[online].dates);
-			//$(".online-entry:last").append(formattedOnlineDates);
-			//var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlines[online].url);
-			//$(".online-entry:last").append(formattedOnlineURL);
 			
 		}
 	}

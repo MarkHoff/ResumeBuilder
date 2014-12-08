@@ -5,12 +5,15 @@
 }
 
 
-
 .education-entry, .work-entry, .project-entry, .online-entry {
   padding-left: 5%;
   padding-right: 5%;
 }
 
+#main {
+	max-width: 75%;
+	margin: 0 auto;
+}
 
 h1 {
 
@@ -23,7 +26,7 @@ h1 {
 h2 {
   font-style: bold;
   font-size: 24px;
-  color: #999999;
+  color:#F3F3F3;
   line-height: 29px;
   padding: 10px;
 }
@@ -52,7 +55,7 @@ h2, h3, h4, h5 {
 .date-text {
   font-style: italic;
   font-size: 14px;
-  color: #999999;
+  color: #111111;
   line-height: 16px;
   float: left;
 }
@@ -60,7 +63,7 @@ h2, h3, h4, h5 {
 .location-text {
   font-style: italic;
   font-size: 14px;
-  color: #999999;
+  color: #111111;
   line-height: 16px;
   float: right;
 
@@ -109,18 +112,26 @@ a {
 }
 
 .gray {
-  background-color: #F3F3F3;
+  background-color:#CCCCCC;
   padding-bottom: 10px;
   clear:both;
+}
+
+.medium-gray {
+	background-color: #999999;
 }
 
 .dark-gray {
   background-color: #4A4A4A;
 }
 
-/* TODO: Replace with image later */
 #header {
   background-color: #484848;
+  min-height: 250px; 
+}
+
+#workExperience {
+	min-height: 275px;
 }
 
 .flex-box {
@@ -144,7 +155,7 @@ ul {
 .biopic {
   float: left;
   padding: 10px;
-  width: 120px;
+  max-width: 120px;
   height: auto;
   display: none;
 }

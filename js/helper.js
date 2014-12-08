@@ -42,7 +42,7 @@ var HTMLprojectURL = "<a href='#'";
 var HTMLprojectTitle = ">%data%</a>";
 var HTMLprojectDates = "<div class='date-text'>%data%</div>";
 var HTMLprojectDescription = "<p><br>%data%</p>";
-var HTMLprojectImage = "<img src='%data%'>";
+var HTMLprojectImage = "><img src='%data%'></a>";
 
 var HTMLschoolStart = "<div class='education-entry'></div>";
 var HTMLschoolURL = "<a href='#'";
@@ -82,7 +82,7 @@ The next few lines about clicks are for the Collecting Click Locations quiz in L
 */
 clickLocations = [];
 
-/*function logClicks(x,y) {
+function logClicks(x,y) {
   clickLocations.push(
     {
       "x": x,
@@ -98,7 +98,7 @@ $(document).click(function(loc) {
   
   logClicks(x,y);
   
-}); */
+}); 
 
 /*
 This is the fun part. Here's where we generate the custom Google Map for the website.
@@ -228,12 +228,6 @@ function initializeMap() {
       
       service.textSearch(request, callback);
       
-      //Copied this from Piazza forum
-      //service.textSearch(request, function(results, status) {
-      //if (status == google.maps.places.PlacesServiceStatus.OK) {       
-        //createMapMarker(results[0], text);
-      //}
-    //});
     }
   }
 
