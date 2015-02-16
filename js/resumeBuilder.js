@@ -57,7 +57,29 @@ var work = {
 		" headquarters in Alpharetta, GA for Cingular Wireless managing call routing translations, and later moved into" +
 		" IT as a technical architect for Oracle database applications."
 	}
-	]
+	],
+	
+	//Function to display my work information
+ display: function(){
+	
+	for (job in work.jobs) {
+		$("#workExperience").append(HTMLworkStart);
+		var formattedWorkURL = HTMLworkURL.replace("#", work.jobs[job].url);
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].company);
+		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].position);
+		var formattedEmployerTitle = formattedWorkURL + formattedEmployer + formattedTitle;
+		$(".work-entry:last").append(formattedEmployerTitle);
+		
+		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+		$(".work-entry:last").append(formattedDates);
+		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+		$(".work-entry:last").append(formattedDescription);
+		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+		$(".work-entry:last").append(formattedLocation);
+	};
+	
+}
+
 };
 
 
@@ -98,86 +120,10 @@ var education = {
 			"school" : "AT&T CELL",
 			"dates" : "May 2014 - July 2014"
 		}
-	]
-};
-
-//Project I've worked on
-var projects = {
-	"proj" : [
-	{
-		"title" : "Project 1 - Mockup to Web Design",
-		"dates" : " 2014",
-		"description" : "My first project, using Bootstrap to build a website from a mockup.",
-		"images" : "images/Project1.jpg",
-		"url" : "http://markhoff.github.io/Project1/"
-	},
-	{
-		"title" : "Project 2 - Dynamic Web Design",
-		"dates" : "2014",
-		"description" : "My second project, using Javascript to build a resume.",
-		"images" : "images/Project2.jpg",
-		"url" : "http://markhoff.github.io/ResumeBuilder/"	
-	}
-	]	
-
-};
-
-
-//If statement to display skills.
-if (bio.skills.length > 0) {
-	$("#header").append(HTMLskillsStart);
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-	$("#skills").append(formattedSkill);
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-	$("#skills").append(formattedSkill);
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-	$("#skills").append(formattedSkill);
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-	$("#skills").append(formattedSkill);	
-};
-
-//Function to display my work information
-function displayWork(){
+	],
 	
-	for (job in work.jobs) {
-		$("#workExperience").append(HTMLworkStart);
-		var formattedWorkURL = HTMLworkURL.replace("#", work.jobs[job].url);
-		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].company);
-		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].position);
-		var formattedEmployerTitle = formattedWorkURL + formattedEmployer + formattedTitle;
-		$(".work-entry:last").append(formattedEmployerTitle);
-		
-		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-		$(".work-entry:last").append(formattedDates);
-		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-		$(".work-entry:last").append(formattedDescription);
-		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-		$(".work-entry:last").append(formattedLocation);
-	};
-	
-};
-
-//Function to display the projects I've worked on.
-	function displayProjects() {
-		for (pro in projects.proj) {
-			$("#projects").append(HTMLprojectStart);
-			var formattedProjectUrl = HTMLprojectURL.replace("#", projects.proj[pro].url);
-			var formattedProjTitle = HTMLprojectTitle.replace("%data%", projects.proj[pro].title);
-			var formattedProjUrlTitle = formattedProjectUrl + formattedProjTitle;
-			$(".project-entry:last").append(formattedProjUrlTitle);
-			var formattedProjDates = HTMLprojectDates.replace("%data%", projects.proj[pro].dates);
-			$(".project-entry:last").append(formattedProjDates);
-			var formattedProjDescrip = HTMLprojectDescription.replace("%data%", projects.proj[pro].description);
-			$(".project-entry:last").append(formattedProjDescrip);
-			var formattedProjImg = HTMLprojectImage.replace("%data%", projects.proj[pro].images);
-			var formattedProjImgUrl = formattedProjectUrl + formattedProjImg;
-			$(".project-entry:last").append(formattedProjImgUrl);
-			//$(".project-entry:last").append(formattedProjImg);		
-		}
-	};
-
-//Function to display my education history	
-	function displayEducation() {
+	//Function to display my education history	
+	display: function() {
 		for (school in education.schools) {
 			$("#education").append(HTMLschoolStart);
 			var formattedSchoolUrl = HTMLschoolURL.replace("#", education.schools[school].url);
@@ -205,11 +151,69 @@ function displayWork(){
 			
 		}
 	}
+};
+
+//Project I've worked on
+var projects = {
+	"proj" : [
+	{
+		"title" : "Project 1 - Mockup to Web Design",
+		"dates" : " 2014",
+		"description" : "My first project, using Bootstrap to build a website from a mockup.",
+		"images" : "images/Project1.jpg",
+		"url" : "http://markhoff.github.io/Project1/"
+	},
+	{
+		"title" : "Project 2 - Dynamic Web Design",
+		"dates" : "2014",
+		"description" : "My second project, using Javascript to build a resume.",
+		"images" : "images/Project2.jpg",
+		"url" : "http://markhoff.github.io/ResumeBuilder/"	
+	}
+	],
+	
+	//Function to display the projects I've worked on.
+	display: function() {
+		for (pro in projects.proj) {
+			$("#projects").append(HTMLprojectStart);
+			var formattedProjectUrl = HTMLprojectURL.replace("#", projects.proj[pro].url);
+			var formattedProjTitle = HTMLprojectTitle.replace("%data%", projects.proj[pro].title);
+			var formattedProjUrlTitle = formattedProjectUrl + formattedProjTitle;
+			$(".project-entry:last").append(formattedProjUrlTitle);
+			var formattedProjDates = HTMLprojectDates.replace("%data%", projects.proj[pro].dates);
+			$(".project-entry:last").append(formattedProjDates);
+			var formattedProjDescrip = HTMLprojectDescription.replace("%data%", projects.proj[pro].description);
+			$(".project-entry:last").append(formattedProjDescrip);
+			var formattedProjImg = HTMLprojectImage.replace("%data%", projects.proj[pro].images);
+			var formattedProjImgUrl = formattedProjectUrl + formattedProjImg;
+			$(".project-entry:last").append(formattedProjImgUrl);
+			//$(".project-entry:last").append(formattedProjImg);		
+		}
+	}	
+
+};
+
+
+//If statement to display skills.
+if (bio.skills.length > 0) {
+	$("#header").append(HTMLskillsStart);
+	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
+	$("#skills").append(formattedSkill);
+	var formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
+	$("#skills").append(formattedSkill);
+	var formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
+	$("#skills").append(formattedSkill);
+	var formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
+	$("#skills").append(formattedSkill);	
+};
+
+
+
 
 //These three statements call the various functions defined above.		
-displayWork();
-displayProjects();
-displayEducation();
+work.display();
+projects.display();
+education.display();
 
 //This function is used to internationalize my name (i.e. all caps)
 function inName(name) {
